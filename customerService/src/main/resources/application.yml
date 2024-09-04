@@ -1,0 +1,24 @@
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+
+spring:
+  application:
+    name: customer-service
+  cloud:
+    config:
+#      discovery:
+#        enabled: true
+      name: customer-client-config
+      fail-fast: true
+  config:
+    import: optional:configserver:http://localhost:8087
+  profiles:
+    active: prod

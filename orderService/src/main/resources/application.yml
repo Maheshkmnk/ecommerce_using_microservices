@@ -1,0 +1,22 @@
+server:
+  port: 8086
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    config:
+      name: order-client-config
+      fail-fast: true
+  config:
+    import: optional:configserver:http://localhost:8087/
+  profiles:
+    active: prod

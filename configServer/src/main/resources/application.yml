@@ -1,0 +1,43 @@
+server:
+  port: 8087
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+
+spring:
+  application:
+      name: configServer
+  cloud:
+    config:
+      server:
+        git:
+#          uri: https://github.com/Maheshkmnk/{application}
+          uri: https://github.com/Maheshkmnk/property_files.git
+#          uri: http://github.com/TEK-Leads/config-properties.git
+          cloneOnStart: true
+#          skipSslValidation: true  # useful when testing the config server functionality not production environment
+          default-label: master
+#          timeout: 2
+          search-paths:
+            - book
+            - customer
+            - order
+
+#          basedir: target/config
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          config: DEBUG
+#      eclipse:
+#        jgit: DEBUG
+
